@@ -9,14 +9,15 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "2.5"
+}
+
 group 'io.github.ranolp'
 version '0.1.0'
 
 apply plugin: 'kotlin'
-
-plugins {
-    id "org.sonarqube" version "2.5"
-}
+apply plugin: 'jacoco'
 
 repositories {
     mavenCentral()
@@ -32,4 +33,11 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "ServiceTest"
+        property "sonar.projectKey", "RanolP:ServiceTest"
+    }
 }
